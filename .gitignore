@@ -1,0 +1,60 @@
+# -------------------
+# Python
+# -------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+.venv/
+venv/
+ai-em/
+pip-wheel-metadata/
+
+# -------------------
+# Spark
+# -------------------
+spark-warehouse/
+metastore_db/
+derby.log
+
+# -------------------
+# dbt
+# -------------------
+target/
+dbt_packages/
+logs/
+
+# -------------------
+# Terraform
+# -------------------
+.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfvars
+.crash.log
+
+# -------------------
+# Cloud / GCP
+# -------------------
+*.json
+*.key
+gcloud/
+credentials/
+
+# -------------------
+# Kubernetes
+# -------------------
+*.log
+
+# -------------------
+# IDE / Editors
+# -------------------
+.vscode/
+.idea/
+*.iml
+
+# -------------------
+# OS
+# -------------------
+.DS_Store
+Thumbs.db
