@@ -1,0 +1,15 @@
+# Normalize line endings
+* text=auto
+
+# Shell scripts must use LF
+*.sh text eol=lf
+
+# Windows scripts
+*.ps1 text eol=crlf
+
+# Terraform
+*.tf text eol=lf
+
+# YAML
+*.yml text eol=lf
+```

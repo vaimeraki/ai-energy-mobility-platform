@@ -1,0 +1,9 @@
+# Scaleway CLI Configuration
+# Copy this to ~/.config/scaleway/config.yaml
+
+access_key: SCW149BHM5EP9DBV9PEJ
+secret_key: 69de39d1-e2df-49fc-bca0-6d172814e4d9
+default_organization_id: cafedfed-88ba-4f84-ac2c-5c6b30a76b3d
+default_project_id: cafedfed-88ba-4f84-ac2c-5c6b30a76b3d
+default_region: fr-par
+default_zone: fr-par-1

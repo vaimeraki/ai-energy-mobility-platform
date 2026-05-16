@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  minio:
+    image: minio/minio:latest
+    container_name: aem-minio
+    ports:
+      - "9000:9000"   # API port
+      - "9001:9001"   # Console port
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin123
+      - MINIO_DOMAIN=localhost
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: aem-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=aem_platform
+      - POSTGRES_USER=aem_user
+      - POSTGRES_PASSWORD=aem_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init-postgres.sql:/docker-entrypoint-initdb.d/init-postgres.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aem_user -d aem_platform"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  minio_data:
+  postgres_data:
+
+networks:
+  default:
+    name: aem-network

@@ -17,32 +17,47 @@ The platform combines:
 ## Architecture
 
 ```
+┌──────────────────────── Azure (Design & Governance) ───────────────────────┐
+│ Resource Group | IAM | Terraform (Blob Storage defined, not applied)        │
+└────────────────────────────────────────────────────────────────────────────┘
+                                │
+                                │ (portable boundary)
+                                ▼
 French APIs (RTE, SNCF, ADEME)
         ↓
-Batch Ingestion (Cloud Functions)
+Batch Ingestion (Local Functions)
         ↓
-Pub/Sub (Streaming Backbone)
+MinIO (S3-compatible Streaming)
         ↓
-Spark Structured Streaming (Dataproc)
+Spark Structured Streaming (Docker)
         ↓
-Lakehouse (GCS + Delta Lake)
+Lakehouse (MinIO + Delta Lake)
         ↓
 dbt (Analytics Models)
         ↓
-BigQuery (Serving Layer)
+PostgreSQL + pgvector (Local)
         ↓
-Vector DB (pgvector)
-        ↓
-LLM (Gemini / OSS)
+LLM (Local/Cloud)
         ↓
 API / Dashboard
 ```
 
 ## Technology Stack
-- **Cloud**: Google Cloud Platform (free tier)
-- **Data Processing**: Apache Spark (batch & streaming)
-- **Storage**: GCS + Delta Lake + BigQuery
-- **Orchestration**: Airflow
-- **Analytics**: dbt
-- **AI**: Open‑source LLM + Retrieval‑Augmented Generation
-- **DevOps**: Terraform, CI/CD, Kubernetes
+- **Cloud**: Azure (primary) + MinIO (local S3-compatible) - Hybrid Architecture
+- **Data Engineering (Hybrid Cloud)**
+- **Python 3.11** - Core language
+- **Apache Spark 3.5** - Batch & streaming processing
+- **MinIO** - Local S3-compatible data lake (development)
+- **Azure Blob Storage** - Cloud data lake (production design)
+- **PostgreSQL + pgvector** - Vector database (local)
+- **Azure Event Hubs** - Streaming backbone (cloud design)
+- **Azure Synapse/Databricks** - Data warehouse & serving layer (cloud design)
+- **dbt 1.6** - Analytics transformation
+- **Delta Lake** - Lakehouse architecture
+- **Airflow 2.7** - Orchestration
+- **DevOps / Platform (Hybrid)**
+- **Docker** - Containerization
+- **Azure Kubernetes Service (AKS)** - Orchestration (cloud design)
+- **Terraform** - Infrastructure as Code (Azure)
+- **GitHub Actions** - CI/CD
+- **Azure Container Registry** - Private registry
