@@ -17,9 +17,6 @@ dbt-postgres==1.7.4      # local warehouse is Postgres, not BigQuery
 SQLAlchemy==2.0.23
 psycopg2-binary==2.9.9
 
-# Orchestration (introduced Phase 6, listed here so `pip install` matches the roadmap)
-apache-airflow==2.7.3
-
 # Data quality (Phase 4/6)
 great-expectations==0.18.5
 

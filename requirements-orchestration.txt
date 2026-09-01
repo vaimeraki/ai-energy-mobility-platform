@@ -1,0 +1,13 @@
+# Only needed for Phase 6 (orchestration) - do NOT install alongside requirements.txt.
+#
+# Apache Airflow pins exact versions of dozens of transitive dependencies
+# (this is why it conflicted with SQLAlchemy==2.0.23 in requirements.txt and
+# broke CI - Airflow 2.7.3 requires SQLAlchemy>=1.4.28,<2.0). Airflow's own
+# docs recommend installing it against its published constraints file
+# instead of resolving it against an unrelated project's requirements:
+#
+#   pip install "apache-airflow==2.7.3" \
+#     --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.7.3/constraints-3.11.txt"
+#
+# Install this in its own virtual environment when Phase 6 actually starts.
+apache-airflow==2.7.3
