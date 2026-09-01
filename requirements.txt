@@ -1,67 +1,31 @@
-# Core Data Engineering
+# Core data engineering (Phases 1-4)
 pandas==2.1.4
-numpy==1.24.4
 pyarrow==13.0.0
-apache-spark==3.5.0
-
-# Cloud & Storage (Multi-cloud compatible)
-google-cloud-storage==2.10.0
-google-cloud-bigquery==3.11.4
-google-cloud-pubsub==2.18.0
-gcsfs==2023.10.0
-scaleway-sdk==2.14.0
-boto3==1.34.0  # S3-compatible for Scaleway Object Storage
-
-# Orchestration
-apache-airflow==2.7.3
-celery==5.3.4
-redis==5.0.1
-
-# Analytics & Transformation
-dbt-core==1.6.0
-dbt-bigquery==1.6.0
-sqlalchemy==2.0.23
-
-# Streaming & Real-time
-kafka-python==2.0.2
-confluent-kafka==2.3.0
-
-# ML & AI
-scikit-learn==1.3.2
-transformers==4.35.2
-torch==2.1.1
-langchain==0.0.350
-
-# Monitoring & Observability
-prometheus-client==0.18.0
-grafana-api==1.0.3
-structlog==23.2.0
-
-# Testing & Quality
-pytest==7.4.3
-pytest-cov==4.1.0
-black==23.10.1
-flake8==6.1.0
-mypy==1.7.1
-
-# DevOps & Utilities
-docker==6.1.3
-kubernetes==28.1.0
-jinja2==3.1.2
-pyyaml==6.0.1
-
-# Development
-jupyter==1.0.0
-ipykernel==6.26.0
-notebook==7.0.6
-
-# French Data Sources
+pyspark==3.5.0          # NOTE: was "apache-spark" (not a real pip package) - fixed
+delta-spark==3.0.0
 requests==2.31.0
+tenacity==8.2.3          # retry/backoff for API ingestion
+pydantic==2.5.3          # data contracts between pipeline stages
+python-dotenv==1.0.0
+
+# Local lakehouse client
+minio==7.2.0
+
+# Analytics & transformation
+dbt-core==1.7.4
+dbt-postgres==1.7.4      # local warehouse is Postgres, not BigQuery
+SQLAlchemy==2.0.23
+psycopg2-binary==2.9.9
+
+# Orchestration (introduced Phase 6, listed here so `pip install` matches the roadmap)
+apache-airflow==2.7.3
+
+# Data quality (Phase 4/6)
+great-expectations==0.18.5
+
+# Cloud (Azure only - matches infra/terraform)
+azure-storage-blob==12.19.0
+
+# French data sources
 beautifulsoup4==4.12.2
 lxml==4.9.3
-
-# Additional Data Engineering Tools
-great-expectations==0.18.5
-mage-ai==0.8.70
-prefect==2.14.0
-dagster==1.6.0

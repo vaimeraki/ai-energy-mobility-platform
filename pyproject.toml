@@ -5,9 +5,9 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "ai-energy-mobility-platform"
 version = "0.1.0"
-description = "AI-driven energy & mobility data platform using French public datasets"
+description = "Data engineering platform turning French open energy, mobility, and emissions data into decarbonization signals"
 authors = [
-    {name = "Your Name", email = "your.email@example.com"}
+    {name = "Vaishnavi Jagtap", email = "vaishnavi.jagtap4498@gmail.com"}
 ]
 readme = "README.md"
 license = {text = "MIT"}
@@ -21,9 +21,9 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/ai-energy-mobility-platform"
-Repository = "https://github.com/yourusername/ai-energy-mobility-platform.git"
-Issues = "https://github.com/yourusername/ai-energy-mobility-platform/issues"
+Homepage = "https://github.com/vaishnavij4498/ai-energy-mobility-platform"
+Repository = "https://github.com/vaishnavij4498/ai-energy-mobility-platform.git"
+Issues = "https://github.com/vaishnavij4498/ai-energy-mobility-platform/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]

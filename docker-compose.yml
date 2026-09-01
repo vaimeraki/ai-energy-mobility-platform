@@ -1,5 +1,9 @@
 version: '3.8'
 
+# Local dev lakehouse only. Values come from .env (see .env.example) so
+# credentials aren't hardcoded here; defaults below match .env.example
+# for anyone who runs this without copying .env first.
+
 services:
   minio:
     image: minio/minio:latest
@@ -8,8 +12,8 @@ services:
       - "9000:9000"   # API port
       - "9001:9001"   # Console port
     environment:
-      - MINIO_ROOT_USER=minioadmin
-      - MINIO_ROOT_PASSWORD=minioadmin123
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER:-minioadmin}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD:-change_me}
       - MINIO_DOMAIN=localhost
     volumes:
       - minio_data:/data
@@ -24,11 +28,11 @@ services:
     image: pgvector/pgvector:pg16
     container_name: aem-postgres
     ports:
-      - "5432:5432"
+      - "5433:5432"   # host 5433 -> avoids clashing with a locally-installed Postgres on 5432
     environment:
       - POSTGRES_DB=aem_platform
       - POSTGRES_USER=aem_user
-      - POSTGRES_PASSWORD=aem_password
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-change_me}
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./scripts/init-postgres.sql:/docker-entrypoint-initdb.d/init-postgres.sql
@@ -42,8 +46,8 @@ services:
     image: dpage/pgadmin4:latest
     container_name: aem-pgadmin
     environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@example.com
-      - PGADMIN_DEFAULT_PASSWORD=admin123
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL:-admin@example.com}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD:-change_me}
     ports:
       - "8080:80"
     volumes:

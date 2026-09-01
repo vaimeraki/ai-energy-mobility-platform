@@ -1,0 +1,6 @@
+# Only needed for Phase 5 (AI/RAG layer) - install after Phases 1-4 are real.
+-r requirements.txt
+
+sentence-transformers==2.2.2
+pgvector==0.2.4
+langchain==0.0.350

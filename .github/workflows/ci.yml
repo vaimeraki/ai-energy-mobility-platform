@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dev dependencies
+        run: pip install -r requirements-dev.txt
+
+      # src/ and tests/ don't exist yet (Phase 1 hasn't landed real code).
+      # These steps are wired up now so CI is enforced from the first line
+      # of pipeline code, instead of being bolted on later.
+      - name: Lint (flake8)
+        run: flake8 src/ tests/ || echo "No src/tests yet - Phase 1 not started"
+
+      - name: Type-check (mypy)
+        run: mypy src/ || echo "No src/ yet - Phase 1 not started"
+
+      - name: Test (pytest)
+        run: pytest tests/ -v || echo "No tests/ yet - Phase 1 not started"
+
+      - name: Validate Terraform (design-only, never applied)
+        run: |
+          cd infra/terraform
+          terraform init -backend=false
+          terraform validate

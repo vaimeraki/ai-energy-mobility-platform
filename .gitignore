@@ -28,18 +28,26 @@ logs/
 # Terraform
 # -------------------
 .terraform/
+.terraform.lock.hcl
 *.tfstate
 *.tfstate.*
 terraform.tfvars
 .crash.log
 
 # -------------------
-# Cloud / GCP
+# Secrets / cloud config
 # -------------------
-*.json
+config.yaml
+*.pem
 *.key
-gcloud/
 credentials/
+gcloud/
+
+# -------------------
+# Binaries
+# -------------------
+*.exe
+mc
 
 # -------------------
 # Kubernetes
